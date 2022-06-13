@@ -22,7 +22,7 @@ class _PageOneState extends State<PageOne> {
         elevation: 0,
         title: Text(
           "RAKITRA",
-          style: TextStyle(color: swatch_3, fontWeight: FontWeight.w400),
+          style: TextStyle(color: swatch_3, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -55,7 +55,7 @@ class _PageOneState extends State<PageOne> {
                       style: TextStyle(
                           fontSize: 15,
                           color: swatch_3,
-                          fontWeight: FontWeight.normal),
+                          fontWeight: FontWeight.bold),
                     )
                   ],
                 ),
@@ -93,7 +93,7 @@ class _PageOneState extends State<PageOne> {
                               style: TextStyle(
                                   fontSize: 20,
                                   color: swatch_3,
-                                  fontWeight: FontWeight.normal),
+                                  fontWeight: FontWeight.bold),
                             )
                           ],
                         ),
@@ -126,14 +126,14 @@ class _PageOneState extends State<PageOne> {
                                       style: TextStyle(
                                           fontSize: 30,
                                           color: Colors.black,
-                                          fontWeight: FontWeight.normal),
+                                          fontWeight: FontWeight.w600),
                                     ),
                                     Text(
                                       "Total",
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.black,
-                                          fontWeight: FontWeight.normal),
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
@@ -152,18 +152,18 @@ class _PageOneState extends State<PageOne> {
                                   // ignore: prefer_const_literals_to_create_immutables
                                   children: [
                                     Text(
-                                      "10 000Ar",
+                                      "25 000Ar",
                                       style: TextStyle(
                                           fontSize: 30,
                                           color: Colors.black,
-                                          fontWeight: FontWeight.normal),
+                                          fontWeight: FontWeight.w600),
                                     ),
                                     Text(
                                       "Objectif",
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.black,
-                                          fontWeight: FontWeight.normal),
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
@@ -206,13 +206,13 @@ class _PageOneState extends State<PageOne> {
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: Colors.black,
-                                              fontWeight: FontWeight.normal),
+                                              fontWeight: FontWeight.bold),
                                         ),
                                         subtitle: Text(
                                           "Pour une durée de trois jours",
                                           style: TextStyle(
                                               color: swatch_2,
-                                              fontWeight: FontWeight.normal),
+                                              fontWeight: FontWeight.w600),
                                         ),
                                         trailing: IconButton(
                                             onPressed: () {},

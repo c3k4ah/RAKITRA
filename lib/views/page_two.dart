@@ -36,7 +36,7 @@ class _PageTwoState extends State<PageTwo> {
         elevation: 0,
         title: Text(
           "RAKITRA",
-          style: TextStyle(color: swatch_3, fontWeight: FontWeight.w400),
+          style: TextStyle(color: swatch_3, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -65,7 +65,6 @@ class _PageTwoState extends State<PageTwo> {
                             setState(() {
                               isObj = !isObj;
                             });
-                            print(pourcentage(objectif, total));
                           },
                           child: Container(
                             width: 200,
@@ -83,21 +82,21 @@ class _PageTwoState extends State<PageTwo> {
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: swatch_1,
-                                              fontWeight: FontWeight.w400),
+                                              fontWeight: FontWeight.bold),
                                         ),
                                         Text(
                                           "$objectif",
                                           style: TextStyle(
-                                              fontSize: 35,
-                                              color: swatch_1,
-                                              fontWeight: FontWeight.w400),
+                                            fontSize: 35,
+                                            color: swatch_1,
+                                          ),
                                         ),
                                         Text(
                                           "Ariary",
                                           style: TextStyle(
-                                              fontSize: 20,
-                                              color: swatch_1,
-                                              fontWeight: FontWeight.w400),
+                                            fontSize: 20,
+                                            color: swatch_1,
+                                          ),
                                         ),
                                       ],
                                     )
@@ -110,21 +109,21 @@ class _PageTwoState extends State<PageTwo> {
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: swatch_1,
-                                              fontWeight: FontWeight.w400),
+                                              fontWeight: FontWeight.bold),
                                         ),
                                         Text(
                                           "$total",
                                           style: TextStyle(
-                                              fontSize: 35,
-                                              color: swatch_1,
-                                              fontWeight: FontWeight.w400),
+                                            fontSize: 35,
+                                            color: swatch_1,
+                                          ),
                                         ),
                                         Text(
                                           "Ariary",
                                           style: TextStyle(
-                                              fontSize: 20,
-                                              color: swatch_1,
-                                              fontWeight: FontWeight.w400),
+                                            fontSize: 20,
+                                            color: swatch_1,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -147,9 +146,9 @@ class _PageTwoState extends State<PageTwo> {
                           child: Text(
                         "Tes depenses durant cette journée",
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             color: swatch_3,
-                            fontWeight: FontWeight.normal),
+                            fontWeight: FontWeight.bold),
                       )),
                     ),
                     SizedBox(
@@ -175,13 +174,13 @@ class _PageTwoState extends State<PageTwo> {
                                   style: TextStyle(
                                       fontSize: 25,
                                       color: swatch_2,
-                                      fontWeight: FontWeight.normal),
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 subtitle: Text(
                                   "700 Ariary",
                                   style: TextStyle(
                                       color: Colors.black,
-                                      fontWeight: FontWeight.normal),
+                                      fontWeight: FontWeight.w600),
                                 ),
                                 trailing: Container(
                                   decoration: BoxDecoration(
