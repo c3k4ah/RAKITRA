@@ -1,9 +1,12 @@
+// ignore_for_file: must_be_immutable, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
+import 'package:kf_drawer/kf_drawer.dart';
 
 import '../colors.dart';
 
-class PageThree extends StatefulWidget {
-  const PageThree({Key? key}) : super(key: key);
+class PageThree extends KFDrawerContent {
+  PageThree({Key? key});
 
   @override
   State<PageThree> createState() => _PageThreeState();

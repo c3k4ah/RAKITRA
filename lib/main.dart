@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'views/intro/introduction.dart';
+import 'views/widget/class_builder.dart';
 
 void main() {
+  ClassBuilder.registerClasses();
   runApp(const MyApp());
 }
 

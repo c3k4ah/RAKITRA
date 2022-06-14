@@ -6,7 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:wallet/colors.dart';
 
-import 'package:wallet/views/page_one.dart';
+import 'package:wallet/views/widget/drawer.dart';
 //import on board me dependency
 
 class IntroScreen extends StatefulWidget {
@@ -39,6 +39,7 @@ class _IntroScreen extends State<IntroScreen> {
 
     return IntroductionScreen(
       globalBackgroundColor: Colors.white,
+      controlsPadding: EdgeInsets.all(0),
       //main background of screen
       pages: [
         //set your page view here
@@ -77,7 +78,7 @@ class _IntroScreen extends State<IntroScreen> {
 
       nextFlex: 0,
       skip: Text(
-        'Skip',
+        'Passer',
         style: TextStyle(
             fontSize: 15, color: swatch_1, fontWeight: FontWeight.bold),
       ),
@@ -86,7 +87,7 @@ class _IntroScreen extends State<IntroScreen> {
         color: swatch_1,
       ),
       done: Text(
-        'Getting Stated',
+        'Commencer',
         style: TextStyle(
             fontSize: 15, fontWeight: FontWeight.w600, color: swatch_1),
       ),
@@ -94,6 +95,7 @@ class _IntroScreen extends State<IntroScreen> {
         size: Size(10.0, 10.0), //size of dots
         color: Color(0xff5d010f), //color of dots
         activeSize: Size(22.0, 10.0),
+
         //activeColor: Colors.white, //color of active dot
         activeShape: RoundedRectangleBorder(
           //shave of active dot
@@ -106,7 +108,7 @@ class _IntroScreen extends State<IntroScreen> {
   void goHomepage(context) {
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) {
-      return const PageOne();
+      return MainPage();
     }), (Route<dynamic> route) => false);
     //Navigate to home page and remove the intro screen history
     //so that "Back" button wont work.
@@ -115,8 +117,9 @@ class _IntroScreen extends State<IntroScreen> {
   Widget introImage(String assetName) {
     //widget to show intro image
     return Align(
-      alignment: Alignment.bottomCenter,
-      child: Lottie.asset(assetName, width: 400.0, repeat: true),
+      alignment: Alignment.center,
+      child: Lottie.asset(assetName,
+          width: 400.0, height: 500, repeat: true, fit: BoxFit.cover),
     );
   }
 }

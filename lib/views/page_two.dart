@@ -1,14 +1,13 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, must_be_immutable, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:kf_drawer/kf_drawer.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
 
 import 'package:wallet/colors.dart';
 
-class PageTwo extends StatefulWidget {
-  const PageTwo({Key? key}) : super(key: key);
-
+class PageTwo extends KFDrawerContent {
   @override
   State<PageTwo> createState() => _PageTwoState();
 }
@@ -34,6 +33,10 @@ class _PageTwoState extends State<PageTwo> {
       appBar: AppBar(
         backgroundColor: swatch_5,
         elevation: 0,
+        leading: IconButton(
+            color: Colors.white,
+            onPressed: () => widget.onMenuPressed,
+            icon: Icon(Icons.menu)),
         title: Text(
           "RAKITRA",
           style: TextStyle(color: swatch_3, fontWeight: FontWeight.bold),
