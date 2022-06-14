@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wallet/views/page_one.dart';
-import 'package:wallet/views/page_two.dart';
+
+import 'views/intro/introduction.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'RAKITRA',
       theme: ThemeData(fontFamily: "CaviarDreams"),
       debugShowCheckedModeBanner: false,
-      home: PageTwo(),
+      home: const IntroScreen(),
     );
   }
 }

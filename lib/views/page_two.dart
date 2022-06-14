@@ -223,9 +223,7 @@ class _PageTwoState extends State<PageTwo> {
                     initialDate: initDate,
                     firstDate: DateTime(2000, 01, 01),
                     lastDate: DateTime(2030, 01, 01),
-                    onDateSelected: (date) {
-                      print(date);
-                    },
+                    onDateSelected: (date) {},
                     leftMargin: 10,
                     monthColor: swatch_2p,
                     dayColor: Colors.white,
