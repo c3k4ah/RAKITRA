@@ -2,6 +2,8 @@
 
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:unicons/unicons.dart';
+
 import 'package:wallet/colors.dart';
 import 'package:wallet/views/page_one.dart';
 import 'package:wallet/views/page_two.dart';
@@ -37,27 +39,27 @@ class _DrawerAnimatedState extends State<DrawerAnimated> {
           // ! simple navigation menu !
           SafeArea(
               child: Container(
-            width: 200,
-            // color: Colors.amberAccent,
+            width: 250,
+            //color: Colors.amberAccent,
             padding: const EdgeInsets.all(8.0),
             child: Column(
+              mainAxisSize: MainAxisSize.max,
               children: [
                 DrawerHeader(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      CircleAvatar(
-                        radius: 45,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Text("Hmida Dev's"),
-                      ),
-                    ],
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white.withOpacity(.5),
+                        image: DecorationImage(
+                            image: ExactAssetImage(
+                                "assets/img/boite_rakitra_with_bg.png"))),
                   ),
                 ),
                 _createDrawerItem(
-                    icon: Icons.home,
+                    icon: UniconsLine.home_alt,
                     text: "Home",
                     onTap: () {
                       setState(() {
@@ -67,7 +69,7 @@ class _DrawerAnimatedState extends State<DrawerAnimated> {
                     },
                     isSelected: _selectedIndex == 0),
                 _createDrawerItem(
-                    icon: Icons.graphic_eq,
+                    icon: UniconsLine.graph_bar,
                     text: "Anlayse",
                     onTap: () {
                       setState(() {
@@ -75,7 +77,19 @@ class _DrawerAnimatedState extends State<DrawerAnimated> {
                         value == 0 ? value = 1 : value = 0;
                       });
                     },
-                    isSelected: _selectedIndex == 2),
+                    isSelected: _selectedIndex == 1),
+                Flex(
+                  direction: Axis.vertical,
+                  children: [
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Container(
+                        color: Colors.white,
+                        child: Text("TEXT"),
+                      ),
+                    )
+                  ],
+                )
               ],
             ),
           )),
@@ -107,7 +121,7 @@ class _DrawerAnimatedState extends State<DrawerAnimated> {
                               value == 0 ? value = 1 : value = 0;
                             });
                           },
-                          icon: Icon(Icons.menu)),
+                          icon: Icon(UniconsLine.draggabledots)),
                       title: Text(
                         "RAKITRA",
                         style: TextStyle(
@@ -121,7 +135,7 @@ class _DrawerAnimatedState extends State<DrawerAnimated> {
               }),
 
           //! Gesture For Slide
-          GestureDetector(
+          /*GestureDetector(
             onHorizontalDragUpdate: (e) {
               if (e.delta.dx > 0) {
                 setState(() {
@@ -133,7 +147,7 @@ class _DrawerAnimatedState extends State<DrawerAnimated> {
                 });
               }
             },
-          )
+          )*/
         ],
       ),
     );
@@ -145,31 +159,32 @@ class _DrawerAnimatedState extends State<DrawerAnimated> {
       required GestureTapCallback onTap,
       required bool isSelected}) {
     return Container(
-      margin: EdgeInsets.only(right: 15),
+      height: 60,
+      margin: EdgeInsets.only(top: 5, bottom: 5),
       decoration: isSelected
           ? BoxDecoration(
               color: swatch_5,
               borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(30),
-                  bottomRight: Radius.circular(30)))
-          : BoxDecoration(color: swatch_2p),
+                  topLeft: Radius.circular(30),
+                  bottomLeft: Radius.circular(30)))
+          : BoxDecoration(color: swatch_2pp),
       child: ListTile(
         selected: true,
         hoverColor: Colors.white,
+        leading: Icon(
+          icon,
+          color: Colors.white,
+        ),
         title: Row(
           children: <Widget>[
-            Icon(
-              icon,
-              color: !isSelected ? Colors.black : Colors.white,
-            ),
             Padding(
               padding: EdgeInsets.only(left: 8.0),
               child: Text(
                 text,
                 style: TextStyle(
-                  fontSize: 20,
-                  color: !isSelected ? Colors.black : Colors.white,
-                ),
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
               ),
             )
           ],
