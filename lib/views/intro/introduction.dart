@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:wallet/colors.dart';
+import 'package:wallet/views/page_one.dart';
 
-import 'package:wallet/views/widget/drawer.dart';
 //import on board me dependency
 
 class IntroScreen extends StatefulWidget {
@@ -108,7 +108,7 @@ class _IntroScreen extends State<IntroScreen> {
   void goHomepage(context) {
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) {
-      return MainPage();
+      return PageOne();
     }), (Route<dynamic> route) => false);
     //Navigate to home page and remove the intro screen history
     //so that "Back" button wont work.

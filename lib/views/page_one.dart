@@ -1,40 +1,20 @@
 // ignore_for_file: prefer_const_constructors, must_be_immutable, use_key_in_widget_constructors
 import 'package:flutter/material.dart';
-import 'package:kf_drawer/kf_drawer.dart';
+
 import 'package:wallet/colors.dart';
-import 'package:wallet/views/widget/drawer.dart';
 
-class PageOne extends KFDrawerContent {
-  PageOne({Key? key});
-
+class PageOne extends StatefulWidget {
   @override
   State<PageOne> createState() => _PageOneState();
 }
 
 class _PageOneState extends State<PageOne> {
-  final GlobalKey<ScaffoldState> _key = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: swatch_5,
-      appBar: AppBar(
-        backgroundColor: swatch_5,
-        elevation: 0,
-        leading: IconButton(
-            color: Colors.white,
-            onPressed: () {
-              widget.onMenuPressed!;
-            },
-            icon: Icon(Icons.menu)),
-        title: Text(
-          "RAKITRA",
-          style: TextStyle(color: swatch_3, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-      ),
       body: SizedBox(
         width: width,
         height: height,

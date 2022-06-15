@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'views/intro/introduction.dart';
-import 'views/widget/class_builder.dart';
+import 'views/widget/drawer.dart';
 
 void main() {
-  ClassBuilder.registerClasses();
   runApp(const MyApp());
 }
 
@@ -18,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'RAKITRA',
       theme: ThemeData(fontFamily: "CaviarDreams"),
       debugShowCheckedModeBanner: false,
-      home: const IntroScreen(),
+      home: const DrawerAnimated(),
     );
   }
 }

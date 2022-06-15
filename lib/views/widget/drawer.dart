@@ -1,74 +1,180 @@
-// ignore_for_file: prefer_const_constructors, must_be_immutable, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors
 
+import 'dart:math';
 import 'package:flutter/material.dart';
-
-import 'package:kf_drawer/kf_drawer.dart';
+import 'package:wallet/colors.dart';
 import 'package:wallet/views/page_one.dart';
 import 'package:wallet/views/page_two.dart';
 
-import '../../colors.dart';
-import 'class_builder.dart';
-
-class MainPage extends StatefulWidget {
-  const MainPage({Key? key});
+class DrawerAnimated extends StatefulWidget {
+  const DrawerAnimated({Key? key}) : super(key: key);
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<DrawerAnimated> createState() => _DrawerAnimatedState();
 }
 
-class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
-  late KFDrawerController _drawerController;
+class _DrawerAnimatedState extends State<DrawerAnimated> {
+  double value = 0;
+  int _selectedIndex = 0;
+  final _selectedPage = [PageOne(), PageTwo()];
 
   @override
   void initState() {
+    _selectedIndex = 0;
     super.initState();
-    _drawerController = KFDrawerController(
-      initialPage: ClassBuilder.fromString('PageOne'),
-      items: [
-        KFDrawerItem.initWithPage(
-          text: Text('MAIN', style: TextStyle(color: Colors.white)),
-          icon: Icon(Icons.home, color: Colors.white),
-          page: PageOne(),
-        ),
-        KFDrawerItem.initWithPage(
-          text: Text(
-            'CALENDAR',
-            style: TextStyle(color: Colors.white),
-          ),
-          icon: Icon(Icons.calendar_today, color: Colors.white),
-          page: PageTwo(),
-        ),
-        KFDrawerItem.initWithPage(
-          text: Text(
-            'SETTINGS',
-            style: TextStyle(color: Colors.white),
-          ),
-          icon: Icon(Icons.settings, color: Colors.white),
-          page: ClassBuilder.fromString('SettingsPage'),
-        ),
-      ],
-    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: KFDrawer(
-//        borderRadius: 0.0,
-//        shadowBorderRadius: 0.0,
-//        menuPadding: EdgeInsets.all(0.0),
-//        scrollable: true,
-        controller: _drawerController,
-        header: Align(
-          alignment: Alignment.centerLeft,
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            width: MediaQuery.of(context).size.width * 0.6,
+      body: Stack(
+        children: [
+          // ! Here Color Of Page Drawer !
+          Container(
+            decoration: BoxDecoration(color: swatch_2pp),
           ),
+
+          // ! simple navigation menu !
+          SafeArea(
+              child: Container(
+            width: 200,
+            // color: Colors.amberAccent,
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                DrawerHeader(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      CircleAvatar(
+                        radius: 45,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Text("Hmida Dev's"),
+                      ),
+                    ],
+                  ),
+                ),
+                _createDrawerItem(
+                    icon: Icons.home,
+                    text: "Home",
+                    onTap: () {
+                      setState(() {
+                        _selectedIndex = 0;
+                        value == 0 ? value = 1 : value = 0;
+                      });
+                    },
+                    isSelected: _selectedIndex == 0),
+                _createDrawerItem(
+                    icon: Icons.graphic_eq,
+                    text: "Anlayse",
+                    onTap: () {
+                      setState(() {
+                        _selectedIndex = 1;
+                        value == 0 ? value = 1 : value = 0;
+                      });
+                    },
+                    isSelected: _selectedIndex == 2),
+              ],
+            ),
+          )),
+
+          // ! : MainScreen
+          TweenAnimationBuilder(
+              // ? Here Change Animation
+              curve: Curves.easeInOut,
+              tween: Tween<double>(begin: 0, end: value),
+              // ? and here change
+              duration: const Duration(milliseconds: 500),
+              builder: (_, double val, __) {
+                return (Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.identity()
+                    ..setEntry(3, 2, 0.001)
+                    ..setEntry(0, 3, 200 * val)
+                    ..rotateY((pi / 6) * val),
+                  child:
+                      // !Scafold For MainScreen Here
+                      Scaffold(
+                    appBar: AppBar(
+                      backgroundColor: swatch_5,
+                      elevation: 0,
+                      leading: IconButton(
+                          color: Colors.white,
+                          onPressed: () {
+                            setState(() {
+                              value == 0 ? value = 1 : value = 0;
+                            });
+                          },
+                          icon: Icon(Icons.menu)),
+                      title: Text(
+                        "RAKITRA",
+                        style: TextStyle(
+                            color: swatch_3, fontWeight: FontWeight.bold),
+                      ),
+                      centerTitle: true,
+                    ),
+                    body: _selectedPage[_selectedIndex],
+                  ),
+                ));
+              }),
+
+          //! Gesture For Slide
+          GestureDetector(
+            onHorizontalDragUpdate: (e) {
+              if (e.delta.dx > 0) {
+                setState(() {
+                  value = 1;
+                });
+              } else {
+                setState(() {
+                  value = 0;
+                });
+              }
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _createDrawerItem(
+      {required IconData icon,
+      required String text,
+      required GestureTapCallback onTap,
+      required bool isSelected}) {
+    return Container(
+      margin: EdgeInsets.only(right: 15),
+      decoration: isSelected
+          ? BoxDecoration(
+              color: swatch_5,
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(30),
+                  bottomRight: Radius.circular(30)))
+          : BoxDecoration(color: swatch_2p),
+      child: ListTile(
+        selected: true,
+        hoverColor: Colors.white,
+        title: Row(
+          children: <Widget>[
+            Icon(
+              icon,
+              color: !isSelected ? Colors.black : Colors.white,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 8.0),
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: !isSelected ? Colors.black : Colors.white,
+                ),
+              ),
+            )
+          ],
         ),
-        decoration: BoxDecoration(
-          color: swatch_2pp,
-        ),
+        onTap: onTap,
       ),
     );
   }
