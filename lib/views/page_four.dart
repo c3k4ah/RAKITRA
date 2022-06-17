@@ -3,15 +3,21 @@
 import 'package:flutter/material.dart';
 import 'package:wallet/colors.dart';
 
-class PageThree extends StatefulWidget {
-  const PageThree({Key? key}) : super(key: key);
+class PageFour extends StatefulWidget {
+  const PageFour({Key? key}) : super(key: key);
 
   @override
-  State<PageThree> createState() => _PageThreeState();
+  State<PageFour> createState() => _PageFourState();
 }
 
-class _PageThreeState extends State<PageThree> {
-  List<bool> values = [false, false, false, false, false];
+class _PageFourState extends State<PageFour> {
+  List<bool> values = [
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +88,8 @@ class _PageThreeState extends State<PageThree> {
                 height: 65,
                 width: 200,
                 decoration: BoxDecoration(
-                    color: swatch_2pp, borderRadius: BorderRadius.circular(50)),
+                    color: swatch_2p.withOpacity(.8),
+                    borderRadius: BorderRadius.circular(50)),
                 padding: EdgeInsets.all(8),
                 child: MaterialButton(
                   color: swatch_3,

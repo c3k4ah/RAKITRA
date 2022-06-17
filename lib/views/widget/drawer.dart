@@ -8,6 +8,9 @@ import 'package:wallet/colors.dart';
 import 'package:wallet/views/page_one.dart';
 import 'package:wallet/views/page_two.dart';
 
+import '../page_four.dart';
+import '../page_three.dart';
+
 class DrawerAnimated extends StatefulWidget {
   const DrawerAnimated({Key? key}) : super(key: key);
 
@@ -18,7 +21,7 @@ class DrawerAnimated extends StatefulWidget {
 class _DrawerAnimatedState extends State<DrawerAnimated> {
   double value = 0;
   int _selectedIndex = 0;
-  final _selectedPage = [PageOne(), PageTwo()];
+  final _selectedPage = [PageOne(), PageTwo(), PageThree(), PageFour()];
 
   @override
   void initState() {
@@ -28,6 +31,8 @@ class _DrawerAnimatedState extends State<DrawerAnimated> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
         children: [
@@ -38,58 +43,81 @@ class _DrawerAnimatedState extends State<DrawerAnimated> {
 
           // ! simple navigation menu !
           SafeArea(
-              child: Container(
+              child: SizedBox(
             width: 250,
-            //color: Colors.amberAccent,
-            padding: const EdgeInsets.all(8.0),
+            height: height,
             child: Column(
-              mainAxisSize: MainAxisSize.max,
               children: [
-                DrawerHeader(
-                  child: Container(
-                    width: 200,
-                    height: 200,
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white.withOpacity(.5),
-                        image: DecorationImage(
-                            image: ExactAssetImage(
-                                "assets/img/boite_rakitra_with_bg.png"))),
+                Container(
+                  height: height * .9,
+                  //color: Colors.amberAccent,
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      DrawerHeader(
+                        child: Container(
+                          width: 200,
+                          height: 200,
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white.withOpacity(.5),
+                              image: DecorationImage(
+                                  image: ExactAssetImage(
+                                      "assets/img/boite_rakitra_with_bg.png"))),
+                        ),
+                      ),
+                      _createDrawerItem(
+                          icon: UniconsLine.home_alt,
+                          text: "Home",
+                          onTap: () {
+                            setState(() {
+                              _selectedIndex = 0;
+                              value == 0 ? value = 1 : value = 0;
+                            });
+                          },
+                          isSelected: _selectedIndex == 0),
+                      _createDrawerItem(
+                          icon: UniconsLine.graph_bar,
+                          text: "Anlayse",
+                          onTap: () {
+                            setState(() {
+                              _selectedIndex = 1;
+                              value == 0 ? value = 1 : value = 0;
+                            });
+                          },
+                          isSelected: _selectedIndex == 1),
+                      _createDrawerItem(
+                          icon: UniconsLine.money_stack,
+                          text: "Resource",
+                          onTap: () {
+                            setState(() {
+                              _selectedIndex = 2;
+                              value == 0 ? value = 1 : value = 0;
+                            });
+                          },
+                          isSelected: _selectedIndex == 2),
+                      _createDrawerItem(
+                          icon: UniconsLine.money_insert,
+                          text: "Charge",
+                          onTap: () {
+                            setState(() {
+                              _selectedIndex = 3;
+                              value == 0 ? value = 1 : value = 0;
+                            });
+                          },
+                          isSelected: _selectedIndex == 3),
+                    ],
                   ),
                 ),
-                _createDrawerItem(
-                    icon: UniconsLine.home_alt,
-                    text: "Home",
-                    onTap: () {
-                      setState(() {
-                        _selectedIndex = 0;
-                        value == 0 ? value = 1 : value = 0;
-                      });
-                    },
-                    isSelected: _selectedIndex == 0),
-                _createDrawerItem(
-                    icon: UniconsLine.graph_bar,
-                    text: "Anlayse",
-                    onTap: () {
-                      setState(() {
-                        _selectedIndex = 1;
-                        value == 0 ? value = 1 : value = 0;
-                      });
-                    },
-                    isSelected: _selectedIndex == 1),
-                Flex(
-                  direction: Axis.vertical,
-                  children: [
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Container(
-                        color: Colors.white,
-                        child: Text("TEXT"),
-                      ),
-                    )
-                  ],
-                )
+                Text(
+                  "© Copyright Dominick R.G",
+                  style: TextStyle(
+                      fontSize: 10,
+                      color: swatch_3,
+                      fontWeight: FontWeight.bold),
+                ),
               ],
             ),
           )),
@@ -173,6 +201,7 @@ class _DrawerAnimatedState extends State<DrawerAnimated> {
         hoverColor: Colors.white,
         leading: Icon(
           icon,
+          size: 22,
           color: Colors.white,
         ),
         title: Row(
@@ -182,7 +211,7 @@ class _DrawerAnimatedState extends State<DrawerAnimated> {
               child: Text(
                 text,
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 17,
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
               ),

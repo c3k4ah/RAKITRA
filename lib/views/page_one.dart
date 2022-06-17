@@ -23,7 +23,7 @@ class _PageOneState extends State<PageOne> {
             children: <Widget>[
               Container(
                 color: Colors.transparent,
-                height: height * .3,
+                height: height * .25,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -51,13 +51,14 @@ class _PageOneState extends State<PageOne> {
               ),
               Container(
                 color: Colors.transparent,
-                height: height * .55,
+                height: height * .6,
                 width: width,
+                margin: EdgeInsets.only(top: 40),
                 child: Stack(
-                  alignment: AlignmentDirectional.bottomEnd,
+                  alignment: AlignmentDirectional.topStart,
                   children: [
                     Container(
-                      height: height * .53,
+                      height: 400,
                       width: width,
                       padding: EdgeInsets.symmetric(horizontal: 25),
                       child: Container(
@@ -89,9 +90,10 @@ class _PageOneState extends State<PageOne> {
                       ),
                     ),
                     Container(
-                      height: 350,
+                      height: height * .7,
                       width: width,
                       padding: EdgeInsets.symmetric(horizontal: 10),
+                      margin: EdgeInsets.only(top: 50),
                       child: Container(
                         // padding: EdgeInsets.symmetric(horizontal: 25),
                         decoration: BoxDecoration(
@@ -163,7 +165,7 @@ class _PageOneState extends State<PageOne> {
                             ),
                             SizedBox(
                               width: width,
-                              height: 270,
+                              height: 330,
                               child: ListView.builder(
                                   itemCount: 3,
                                   scrollDirection: Axis.vertical,
