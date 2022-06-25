@@ -7,6 +7,8 @@ import 'package:calendar_timeline/calendar_timeline.dart';
 
 import 'package:wallet/colors.dart';
 
+import '../service/services.dart';
+
 class PageTwo extends StatefulWidget {
   @override
   State<PageTwo> createState() => _PageTwoState();
@@ -17,12 +19,6 @@ class _PageTwoState extends State<PageTwo> {
   bool isObj = true;
   int objectif = 20000;
   int total = 13000;
-  int pourcentage(int objectif, int total) {
-    int step = 0;
-    step = (((total * 100) / objectif) * 0.1).round();
-
-    return step;
-  }
 
   @override
   Widget build(BuildContext context) {

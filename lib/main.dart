@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:wallet/views/if_no_data.dart';
 
-import 'views/if_no_data.dart';
-import 'views/widget/drawer.dart';
+import 'views/intro/introduction.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'RAKITRA',
       theme: ThemeData(fontFamily: "CaviarDreams"),
       debugShowCheckedModeBanner: false,
-      home: const NoData(),
+      home: const IntroScreen(),
     );
   }
 }

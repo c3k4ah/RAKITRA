@@ -51,7 +51,7 @@ class _PageOneState extends State<PageOne> {
               ),
               Container(
                 color: Colors.transparent,
-                height: height * .6,
+                height: height * .7,
                 width: width,
                 margin: EdgeInsets.only(top: 40),
                 child: Stack(
@@ -165,7 +165,7 @@ class _PageOneState extends State<PageOne> {
                             ),
                             SizedBox(
                               width: width,
-                              height: 330,
+                              height: height * .5,
                               child: ListView.builder(
                                   itemCount: 3,
                                   scrollDirection: Axis.vertical,

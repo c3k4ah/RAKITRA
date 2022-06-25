@@ -7,6 +7,8 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:wallet/colors.dart';
 import 'package:wallet/views/page_one.dart';
 
+import '../widget/drawer.dart';
+
 //import on board me dependency
 
 class IntroScreen extends StatefulWidget {
@@ -24,11 +26,11 @@ class _IntroScreen extends State<IntroScreen> {
     //this is a page decoration for intro screen
     PageDecoration pageDecoration = PageDecoration(
       titleTextStyle: TextStyle(
-          fontSize: 28.0,
+          fontSize: 25.0,
           fontWeight: FontWeight.w700,
           color: swatch_1), //tile font size, weight and color
       bodyTextStyle: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 19.0, color: Colors.black),
+          fontWeight: FontWeight.bold, fontSize: 16.0, color: Colors.black),
       //body text size and color
 
       //decription padding
@@ -44,27 +46,28 @@ class _IntroScreen extends State<IntroScreen> {
       pages: [
         //set your page view here
         PageViewModel(
-          title: "Categorisation",
-          body: "Voous pouvez enregistrer et filter vos depenses du quotidien.",
+          title: "Calculez vos dépenses mensuelles",
+          body: "dépenses fixes ,dépenses variables , dépenses impulsives",
           image: introImage('assets/animation/premier.json'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Suivie",
+          title: "Calculez vos revenus",
           body:
-              "Suivre l'evolution de votre porfeuille et l'historique de vos depenses.",
+              "Calculez l’ensemble des revenus qui tombent sur votre compte chaque mois.",
           image: introImage('assets/animation/second.json'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Strategie et analyse",
-          body: "Analyse vos transaction et anticipez les graçe aux graphes.",
+          title: "Analysez votre budget mensuel",
+          body:
+              "En faisant la différence des dépenses et en la comparant à vos revenus, vous devez pouvoir constater votre \"santé financière\"",
           image: introImage('assets/animation/troisieme.json'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "C'est parti !",
-          body: "Commencer à profiter de notre applicayion",
+          body: "Comment faire des économies avec un petit budget ?",
           image: introImage('assets/animation/wallet.json'),
           decoration: pageDecoration,
         ),
@@ -108,7 +111,7 @@ class _IntroScreen extends State<IntroScreen> {
   void goHomepage(context) {
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) {
-      return PageOne();
+      return DrawerAnimated();
     }), (Route<dynamic> route) => false);
     //Navigate to home page and remove the intro screen history
     //so that "Back" button wont work.
