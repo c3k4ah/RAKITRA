@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:wallet/views/if_no_data.dart';
+import 'package:wallet/views/widget/drawer.dart';
 
 import 'views/intro/introduction.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       title: 'RAKITRA',
       theme: ThemeData(fontFamily: "CaviarDreams"),
       debugShowCheckedModeBanner: false,
-      home: const IntroScreen(),
+      home: const NoData(),
     );
   }
 }

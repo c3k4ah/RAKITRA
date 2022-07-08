@@ -149,6 +149,76 @@ class _NoDataState extends State<NoData> {
                             border: InputBorder.none),
                       ),
                     ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      width: width,
+                      height: 70,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 7),
+                            width: 90,
+                            height: 30,
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 2,
+                                  color: swatch_3,
+                                ),
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Center(
+                              child: Text(
+                                "Obligatoire",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: swatch_3,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 7),
+                            width: 100,
+                            height: 30,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Center(
+                              child: Text(
+                                "Necessaire",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: swatch_5,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 7),
+                            width: 100,
+                            height: 30,
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 2,
+                                  color: swatch_3,
+                                ),
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Center(
+                              child: Text(
+                                "Negligeable",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: swatch_3,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),

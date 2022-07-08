@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:backdrop/backdrop.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet/colors.dart';
 
@@ -12,6 +13,8 @@ class PageThree extends StatefulWidget {
 
 class _PageThreeState extends State<PageThree> {
   List<bool> values = [false, false, false, false, false];
+  final GlobalKey<BackdropScaffoldState> _scaffoldKey =
+      GlobalKey<BackdropScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +44,14 @@ class _PageThreeState extends State<PageThree> {
                       return Container(
                         margin: EdgeInsets.all(5),
                         decoration: BoxDecoration(
-                          color: swatch_2pp,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
+                            color: swatch_5,
+                            borderRadius: BorderRadius.circular(17),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: swatch_2pp,
+                                  blurRadius: 20,
+                                  spreadRadius: 2)
+                            ]),
                         child: ListTile(
                           leading: Switch(
                             activeColor: swatch_3,
