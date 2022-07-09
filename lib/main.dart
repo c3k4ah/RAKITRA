@@ -2,14 +2,21 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:wallet/views/if_no_data.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:wallet/model/hive_model.dart';
+
 import 'package:wallet/views/widget/drawer.dart';
 
-import 'views/intro/introduction.dart';
-
-void main() {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.removeAfter((initialisation));
+
+  await Hive.initFlutter();
+  Hive.registerAdapter(DepenseAdapter());
+  Hive.registerAdapter(RessourceAdapter());
+
+  await Hive.openBox<Depense>('depense');
+  await Hive.openBox<Ressource>('ressource');
   runApp(const MyApp());
 }
 
@@ -27,7 +34,7 @@ class MyApp extends StatelessWidget {
       title: 'RAKITRA',
       theme: ThemeData(fontFamily: "CaviarDreams"),
       debugShowCheckedModeBanner: false,
-      home: const NoData(),
+      home: const DrawerAnimated(),
     );
   }
 }

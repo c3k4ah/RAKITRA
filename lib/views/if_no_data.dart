@@ -5,6 +5,8 @@ import 'package:unicons/unicons.dart';
 
 import 'package:wallet/colors.dart';
 
+import '../controller/controller.dart';
+
 class NoData extends StatefulWidget {
   const NoData({Key? key}) : super(key: key);
 
@@ -19,6 +21,7 @@ class _NoDataState extends State<NoData> {
   String nom = "";
   final TextEditingController _nomCtrl = TextEditingController();
   final TextEditingController _motantCtrl = TextEditingController();
+  DataController data = DataController();
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;

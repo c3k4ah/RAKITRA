@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:wallet/colors.dart';
-import 'package:wallet/views/page_one.dart';
 
 import '../widget/drawer.dart';
 

@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:backdrop/backdrop.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wallet/colors.dart';
+import 'package:wallet/controller/controller.dart';
+import 'package:wallet/model/hive_model.dart';
+import 'package:wallet/views/widget/card.dart';
 
 class PageThree extends StatefulWidget {
   const PageThree({Key? key}) : super(key: key);
@@ -13,8 +16,14 @@ class PageThree extends StatefulWidget {
 
 class _PageThreeState extends State<PageThree> {
   List<bool> values = [false, false, false, false, false];
-  final GlobalKey<BackdropScaffoldState> _scaffoldKey =
-      GlobalKey<BackdropScaffoldState>();
+
+  final DataController _dataController = DataController();
+  List<Ressource> ressources = [];
+  @override
+  void dispose() {
+    Hive.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,54 +46,19 @@ class _PageThreeState extends State<PageThree> {
               SizedBox(height: 20),
               SizedBox(
                 height: height * .7,
-                child: ListView.builder(
-                    itemCount: 5,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: ((context, index) {
-                      return Container(
-                        margin: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                            color: swatch_5,
-                            borderRadius: BorderRadius.circular(17),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: swatch_2pp,
-                                  blurRadius: 20,
-                                  spreadRadius: 2)
-                            ]),
-                        child: ListTile(
-                          leading: Switch(
-                            activeColor: swatch_3,
-                            inactiveTrackColor: swatch_6,
-                            inactiveThumbColor: swatch_6,
-                            value: values[0],
-                            onChanged: (value) {
-                              setState(() {
-                                values[0] = !values[0];
-                              });
-                            },
-                          ),
-                          title: Text(
-                            "Argent de poche venant de votre famille",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: swatch_3,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          trailing: Text(
-                            "15000 Ar",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: swatch_3,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      );
-                    })),
+                child: ValueListenableBuilder<Box<Ressource>>(
+                  valueListenable: Boxes.getRessource().listenable(),
+                  builder: (context, box, _) {
+                    final ressources = box.values.toList().cast<Ressource>();
+                    return ListView.builder(
+                        itemCount: ressources.length,
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: ((context, index) {
+                          final ressource = ressources[index];
+                          return cardRessource(context, ressource);
+                        }));
+                  },
+                ),
               ),
               Container(
                 height: 65,
@@ -96,7 +70,10 @@ class _PageThreeState extends State<PageThree> {
                   color: swatch_3,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50)),
-                  onPressed: (() {}),
+                  onPressed: (() {
+                    // _dataController.addRessource(2, 500, 3, "TEST", true);
+                    // print("OKAU");
+                  }),
                   child: Text(
                     "Ajouter une resource",
                     textAlign: TextAlign.center,

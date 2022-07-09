@@ -7,7 +7,7 @@ import 'package:calendar_timeline/calendar_timeline.dart';
 
 import 'package:wallet/colors.dart';
 
-import '../service/services.dart';
+import '../controller/services.dart';
 
 class PageTwo extends StatefulWidget {
   @override
