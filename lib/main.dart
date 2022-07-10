@@ -14,9 +14,9 @@ Future main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(DepenseAdapter());
   Hive.registerAdapter(RessourceAdapter());
-
   await Hive.openBox<Depense>('depense');
   await Hive.openBox<Ressource>('ressource');
+
   runApp(const MyApp());
 }
 

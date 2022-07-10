@@ -1,5 +1,5 @@
 import 'package:wallet/model/hive_model.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class DataController {
   Future addDepense(int id, int montant, int importance, String desc,
@@ -67,3 +67,11 @@ class Boxes {
   static Box<Depense> getDepense() => Hive.box<Depense>('depense');
   static Box<Ressource> getRessource() => Hive.box<Ressource>('ressource');
 }
+
+/*class HiveDatabase {
+  static Future<void> init() async {
+    await Hive.initFlutter();
+    await Hive.openBox<Depense>('depense');
+    await Hive.openBox<Ressource>('ressource');
+  }
+}*/

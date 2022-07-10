@@ -5,6 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wallet/colors.dart';
 import 'package:wallet/controller/controller.dart';
 import 'package:wallet/model/hive_model.dart';
+import 'package:wallet/views/if_no_data.dart';
 import 'package:wallet/views/widget/card.dart';
 
 class PageThree extends StatefulWidget {
@@ -55,7 +56,55 @@ class _PageThreeState extends State<PageThree> {
                         scrollDirection: Axis.vertical,
                         itemBuilder: ((context, index) {
                           final ressource = ressources[index];
-                          return cardRessource(context, ressource);
+                          return Container(
+                            margin: const EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                                color: swatch_5,
+                                borderRadius: BorderRadius.circular(17),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: swatch_2pp,
+                                      blurRadius: 20,
+                                      spreadRadius: 2)
+                                ]),
+                            child: ListTile(
+                              leading: Switch(
+                                activeColor: swatch_3,
+                                inactiveTrackColor: swatch_6,
+                                inactiveThumbColor: swatch_6,
+                                value: ressource.idDispo,
+                                onChanged: (value) async {
+                                  await Boxes.getRessource().putAt(
+                                    index,
+                                    Ressource()
+                                      ..idDispo = value
+                                      ..id = ressource.id
+                                      ..desc = ressource.desc
+                                      ..montant = ressource.montant
+                                      ..jourLimite = ressource.jourLimite,
+                                  );
+                                },
+                              ),
+                              title: Text(
+                                ressource.desc,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: swatch_3,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              trailing: Text(
+                                "${ressource.montant} Ar",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: swatch_3,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          );
                         }));
                   },
                 ),
@@ -71,8 +120,25 @@ class _PageThreeState extends State<PageThree> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50)),
                   onPressed: (() {
-                    // _dataController.addRessource(2, 500, 3, "TEST", true);
+                    //_dataController.addRessource(3, 4500, 3, "NO TEST", false);
                     // print("OKAU");
+                    showModalBottomSheet<void>(
+                      context: context,
+                      backgroundColor: Colors.transparent,
+                      builder: (BuildContext context) {
+                        return Container(
+                          height: width * 6,
+                          decoration: BoxDecoration(
+                              color: swatch_5,
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(10),
+                                  topRight: Radius.circular(10))),
+                          child: Center(
+                            child: NoData(),
+                          ),
+                        );
+                      },
+                    );
                   }),
                   child: Text(
                     "Ajouter une resource",
