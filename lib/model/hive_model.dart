@@ -5,29 +5,26 @@ part 'hive_model.g.dart';
 @HiveType(typeId: 0)
 class Depense extends HiveObject {
   @HiveField(0)
-  late int id;
-  @HiveField(1)
   late int montant;
-  @HiveField(2)
+  @HiveField(1)
   late int importance;
-  @HiveField(3)
+  @HiveField(2)
   late String desc;
-  @HiveField(4)
+  @HiveField(3)
   late String nature;
-  @HiveField(5)
+  @HiveField(4)
   late bool idDispo;
 }
 
 @HiveType(typeId: 1)
 class Ressource extends HiveObject {
   @HiveField(0)
-  late int id;
-  @HiveField(1)
   late int montant;
-  @HiveField(2)
+  @HiveField(1)
   late int jourLimite;
-  @HiveField(3)
+  @HiveField(2)
   late String desc;
-  @HiveField(4)
+  @HiveField(3)
   late bool idDispo;
 }
+//flutter pub run build_runner build --delete-conflicting-outputs

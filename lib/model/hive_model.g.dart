@@ -17,29 +17,26 @@ class DepenseAdapter extends TypeAdapter<Depense> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Depense()
-      ..id = fields[0] as int
-      ..montant = fields[1] as int
-      ..importance = fields[2] as int
-      ..desc = fields[3] as String
-      ..nature = fields[4] as String
-      ..idDispo = fields[5] as bool;
+      ..montant = fields[0] as int
+      ..importance = fields[1] as int
+      ..desc = fields[2] as String
+      ..nature = fields[3] as String
+      ..idDispo = fields[4] as bool;
   }
 
   @override
   void write(BinaryWriter writer, Depense obj) {
     writer
-      ..writeByte(6)
-      ..writeByte(0)
-      ..write(obj.id)
-      ..writeByte(1)
-      ..write(obj.montant)
-      ..writeByte(2)
-      ..write(obj.importance)
-      ..writeByte(3)
-      ..write(obj.desc)
-      ..writeByte(4)
-      ..write(obj.nature)
       ..writeByte(5)
+      ..writeByte(0)
+      ..write(obj.montant)
+      ..writeByte(1)
+      ..write(obj.importance)
+      ..writeByte(2)
+      ..write(obj.desc)
+      ..writeByte(3)
+      ..write(obj.nature)
+      ..writeByte(4)
       ..write(obj.idDispo);
   }
 
@@ -65,26 +62,23 @@ class RessourceAdapter extends TypeAdapter<Ressource> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Ressource()
-      ..id = fields[0] as int
-      ..montant = fields[1] as int
-      ..jourLimite = fields[2] as int
-      ..desc = fields[3] as String
-      ..idDispo = fields[4] as bool;
+      ..montant = fields[0] as int
+      ..jourLimite = fields[1] as int
+      ..desc = fields[2] as String
+      ..idDispo = fields[3] as bool;
   }
 
   @override
   void write(BinaryWriter writer, Ressource obj) {
     writer
-      ..writeByte(5)
-      ..writeByte(0)
-      ..write(obj.id)
-      ..writeByte(1)
-      ..write(obj.montant)
-      ..writeByte(2)
-      ..write(obj.jourLimite)
-      ..writeByte(3)
-      ..write(obj.desc)
       ..writeByte(4)
+      ..writeByte(0)
+      ..write(obj.montant)
+      ..writeByte(1)
+      ..write(obj.jourLimite)
+      ..writeByte(2)
+      ..write(obj.desc)
+      ..writeByte(3)
       ..write(obj.idDispo);
   }
 

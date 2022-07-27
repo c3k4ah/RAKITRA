@@ -30,6 +30,8 @@ dependencies:
   # hive database
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  flutter_keyboard_size: ^1.0.0+4
+  get: ^4.6.5
 
 
 dev_dependencies:

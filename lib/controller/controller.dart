@@ -2,10 +2,9 @@ import 'package:wallet/model/hive_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class DataController {
-  Future addDepense(int id, int montant, int importance, String desc,
-      String nature, bool idDispo) async {
+  Future addDepense(int montant, int importance, String desc, String nature,
+      bool idDispo) async {
     final depense = Depense()
-      ..id = id
       ..montant = montant
       ..importance = importance
       ..desc = desc
@@ -15,8 +14,8 @@ class DataController {
     box.add(depense);
   }
 
-  void editDepense(Depense depense, int id, int montant, int importance,
-      String desc, String nature, bool idDispo) {
+  Future<void> editDepense(Depense depense, int montant, int importance,
+      String desc, String nature, bool idDispo) async {
     depense.montant = montant;
     depense.importance = importance;
     depense.desc = desc;
@@ -34,9 +33,8 @@ class DataController {
   }
 
   Future addRessource(
-      int id, int montant, int jourLimite, String desc, bool idDispo) async {
+      int montant, int jourLimite, String desc, bool idDispo) async {
     final ressource = Ressource()
-      ..id = id
       ..montant = montant
       ..jourLimite = jourLimite
       ..desc = desc
@@ -45,8 +43,8 @@ class DataController {
     box.add(ressource);
   }
 
-  void editRessource(Ressource ressource, int id, int montant, int jourLimite,
-      String desc, bool idDispo) {
+  Future<void> editRessource(Ressource ressource, int index, int montant,
+      int jourLimite, String desc, bool idDispo) async {
     ressource.montant = montant;
     ressource.jourLimite = jourLimite;
     ressource.desc = desc;
@@ -54,12 +52,19 @@ class DataController {
 
     final box = Boxes.getRessource();
 
-    box.put(ressource.key, ressource);
-    ressource.save();
+    box.putAt(
+      index,
+      Ressource()
+        ..idDispo = ressource.idDispo
+        ..desc = ressource.desc
+        ..montant = ressource.montant
+        ..jourLimite = ressource.jourLimite,
+    );
+    // ressource.save();
   }
 
-  void deleteRessource(Depense ressource) {
-    ressource.delete();
+  Future<void> deleteThisResource(int id) async {
+    await Boxes.getRessource().deleteAt(id);
   }
 }
 
