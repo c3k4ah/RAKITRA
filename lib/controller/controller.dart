@@ -43,8 +43,9 @@ class DataController {
     box.add(ressource);
   }
 
-  Future<void> editRessource(Ressource ressource, int index, int montant,
-      int jourLimite, String desc, bool idDispo) async {
+  Future<void> editRessource(
+      int index, int montant, int jourLimite, String desc, bool idDispo) async {
+    Ressource ressource = Ressource();
     ressource.montant = montant;
     ressource.jourLimite = jourLimite;
     ressource.desc = desc;
@@ -60,6 +61,7 @@ class DataController {
         ..montant = ressource.montant
         ..jourLimite = ressource.jourLimite,
     );
+    print("okay");
     // ressource.save();
   }
 

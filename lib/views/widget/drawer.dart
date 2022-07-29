@@ -45,79 +45,81 @@ class _DrawerAnimatedState extends State<DrawerAnimated> {
               child: SizedBox(
             width: 250,
             height: height,
-            child: Column(
-              children: [
-                Container(
-                  height: height * .9,
-                  //color: Colors.amberAccent,
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      DrawerHeader(
-                        child: Container(
-                          width: 200,
-                          height: 200,
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white.withOpacity(.5),
-                              image: DecorationImage(
-                                  image: ExactAssetImage(
-                                      "assets/img/boite_rakitra_with_bg.png"))),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    height: height * .9,
+                    //color: Colors.amberAccent,
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        DrawerHeader(
+                          child: Container(
+                            width: 200,
+                            height: 200,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white.withOpacity(.5),
+                                image: DecorationImage(
+                                    image: ExactAssetImage(
+                                        "assets/img/boite_rakitra_with_bg.png"))),
+                          ),
                         ),
-                      ),
-                      _createDrawerItem(
-                          icon: UniconsLine.home_alt,
-                          text: "Home",
-                          onTap: () {
-                            setState(() {
-                              _selectedIndex = 0;
-                              value == 0 ? value = 1 : value = 0;
-                            });
-                          },
-                          isSelected: _selectedIndex == 0),
-                      _createDrawerItem(
-                          icon: UniconsLine.graph_bar,
-                          text: "Anlayse",
-                          onTap: () {
-                            setState(() {
-                              _selectedIndex = 1;
-                              value == 0 ? value = 1 : value = 0;
-                            });
-                          },
-                          isSelected: _selectedIndex == 1),
-                      _createDrawerItem(
-                          icon: UniconsLine.money_stack,
-                          text: "Resource",
-                          onTap: () {
-                            setState(() {
-                              _selectedIndex = 2;
-                              value == 0 ? value = 1 : value = 0;
-                            });
-                          },
-                          isSelected: _selectedIndex == 2),
-                      _createDrawerItem(
-                          icon: UniconsLine.money_insert,
-                          text: "Charge",
-                          onTap: () {
-                            setState(() {
-                              _selectedIndex = 3;
-                              value == 0 ? value = 1 : value = 0;
-                            });
-                          },
-                          isSelected: _selectedIndex == 3),
-                    ],
+                        _createDrawerItem(
+                            icon: UniconsLine.home_alt,
+                            text: "Home",
+                            onTap: () {
+                              setState(() {
+                                _selectedIndex = 0;
+                                value == 0 ? value = 1 : value = 0;
+                              });
+                            },
+                            isSelected: _selectedIndex == 0),
+                        _createDrawerItem(
+                            icon: UniconsLine.graph_bar,
+                            text: "Anlayse",
+                            onTap: () {
+                              setState(() {
+                                _selectedIndex = 1;
+                                value == 0 ? value = 1 : value = 0;
+                              });
+                            },
+                            isSelected: _selectedIndex == 1),
+                        _createDrawerItem(
+                            icon: UniconsLine.money_stack,
+                            text: "Resource",
+                            onTap: () {
+                              setState(() {
+                                _selectedIndex = 2;
+                                value == 0 ? value = 1 : value = 0;
+                              });
+                            },
+                            isSelected: _selectedIndex == 2),
+                        _createDrawerItem(
+                            icon: UniconsLine.money_insert,
+                            text: "Charge",
+                            onTap: () {
+                              setState(() {
+                                _selectedIndex = 3;
+                                value == 0 ? value = 1 : value = 0;
+                              });
+                            },
+                            isSelected: _selectedIndex == 3),
+                      ],
+                    ),
                   ),
-                ),
-                Text(
-                  "© Copyright Dominick R.G",
-                  style: TextStyle(
-                      fontSize: 10,
-                      color: swatch_3,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
+                  Text(
+                    "© Copyright Dominick R.G",
+                    style: TextStyle(
+                        fontSize: 10,
+                        color: swatch_3,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
             ),
           )),
 

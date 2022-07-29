@@ -1,15 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:unicons/unicons.dart';
 import 'package:wallet/colors.dart';
 import 'package:wallet/controller/controller.dart';
 import 'package:wallet/model/hive_model.dart';
-
-import 'ajout_ressource.dart';
 
 class PageThree extends StatefulWidget {
   const PageThree({Key? key}) : super(key: key);
@@ -22,6 +20,9 @@ class _PageThreeState extends State<PageThree> {
   List<bool> values = [false, false, false, false, false];
 
   final DataController _dataController = DataController();
+  final TextEditingController _descriController = TextEditingController();
+  final TextEditingController _montantController = TextEditingController();
+  final TextEditingController _jController = TextEditingController();
   List<Ressource> ressources = [];
   bool keyboard(value) {
     bool isActive = false;
@@ -35,6 +36,13 @@ class _PageThreeState extends State<PageThree> {
       });
     }
     return isActive;
+  }
+
+  @override
+  void initState() {
+    _descriController.text = "";
+    _montantController.text = "";
+    super.initState();
   }
 
   @override
@@ -75,158 +83,12 @@ class _PageThreeState extends State<PageThree> {
                           final ressource = ressources[index];
                           return GestureDetector(
                             onLongPress: () async {
-                              // await Boxes.getRessource().deleteAt(index);
-                              showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return SimpleDialog(
-                                      backgroundColor: Colors.transparent,
-                                      children: [
-                                        Stack(
-                                          alignment:
-                                              AlignmentDirectional.topCenter,
-                                          children: [
-                                            Container(
-                                              height: 400,
-                                              margin: EdgeInsets.symmetric(
-                                                  vertical: 10),
-                                              decoration: BoxDecoration(
-                                                  color: swatch_3,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          25)),
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                    height: 250,
-                                                    decoration: BoxDecoration(
-                                                        color: swatch_5,
-                                                        image: DecorationImage(
-                                                          image: ExactAssetImage(
-                                                              "assets/img/choix.png"),
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15)),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: Text(
-                                                      "Faire des modificaions",
-                                                      style: TextStyle(
-                                                          fontSize: 20,
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 8.0,
-                                                        vertical: 5),
-                                                    child: Text(
-                                                      "Vous pouvez supprimer ou modifier cette article",
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: TextStyle(
-                                                          fontSize: 15,
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            5.0),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
-                                                      children: [
-                                                        MaterialButton(
-                                                            color: swatch_4,
-                                                            shape: RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            12)),
-                                                            child: Text(
-                                                              "modifier",
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  color: Colors
-                                                                      .black),
-                                                            ),
-                                                            onPressed: () {}),
-                                                        MaterialButton(
-                                                            color: swatch_6,
-                                                            shape: RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            12)),
-                                                            child: Text(
-                                                              "supprimer",
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  color:
-                                                                      swatch_3),
-                                                            ),
-                                                            onPressed: () {
-                                                              _dataController
-                                                                  .deleteThisResource(
-                                                                      index);
-                                                              Navigator.pop(
-                                                                  context);
-                                                            }),
-                                                      ],
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            Align(
-                                                alignment: Alignment.topLeft,
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Container(
-                                                    margin: EdgeInsets.zero,
-                                                    width: 30,
-                                                    height: 30,
-                                                    decoration: BoxDecoration(
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                              color: Colors
-                                                                  .black
-                                                                  .withOpacity(
-                                                                      .2),
-                                                              blurRadius: 15,
-                                                              spreadRadius: 2)
-                                                        ],
-                                                        color: swatch_3,
-                                                        shape: BoxShape.circle),
-                                                    child: Center(
-                                                        child: Icon(
-                                                      UniconsLine.times,
-                                                      size: 20,
-                                                      color: swatch_6,
-                                                    )),
-                                                  ),
-                                                )),
-                                          ],
-                                        )
-                                      ],
-                                    );
-                                  });
+                              await popChoice(
+                                  index,
+                                  ressource.montant,
+                                  ressource.jourLimite,
+                                  ressource.desc,
+                                  ressource.idDispo);
                             },
                             child: Container(
                               margin: const EdgeInsets.all(5),
@@ -247,7 +109,6 @@ class _PageThreeState extends State<PageThree> {
                                   value: ressource.idDispo,
                                   onChanged: (value) {
                                     _dataController.editRessource(
-                                        ressource,
                                         index,
                                         ressource.montant,
                                         ressource.jourLimite,
@@ -305,5 +166,326 @@ class _PageThreeState extends State<PageThree> {
         ),
       ),
     );
+  }
+
+  Future popChoice(
+      int index, int montant, int jourLimite, String desc, bool idDispo) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            backgroundColor: Colors.transparent,
+            children: [
+              Stack(
+                alignment: AlignmentDirectional.topCenter,
+                children: [
+                  Container(
+                    height: 400,
+                    margin: EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                        color: swatch_3,
+                        borderRadius: BorderRadius.circular(25)),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 250,
+                          decoration: BoxDecoration(
+                              color: swatch_5,
+                              image: DecorationImage(
+                                image: ExactAssetImage("assets/img/choix.png"),
+                                fit: BoxFit.cover,
+                              ),
+                              borderRadius: BorderRadius.circular(15)),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Faire des modificaions",
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8.0, vertical: 5),
+                          child: Text(
+                            "Vous pouvez supprimer ou modifier cette article",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 15, color: Colors.black),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(
+                                width: 100,
+                                height: 40,
+                                child: MaterialButton(
+                                    color: swatch_4,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    child: Text(
+                                      "modifier",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      Future.delayed(Duration(seconds: 1),
+                                          () async {
+                                        return popEdit(index, montant,
+                                            jourLimite, desc, idDispo);
+                                      });
+                                    }),
+                              ),
+                              SizedBox(
+                                width: 100,
+                                height: 40,
+                                child: MaterialButton(
+                                    color: swatch_6,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    child: Text(
+                                      "supprimer",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: swatch_3),
+                                    ),
+                                    onPressed: () {
+                                      _dataController.deleteThisResource(index);
+                                      Navigator.pop(context);
+                                    }),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Align(
+                      alignment: Alignment.topLeft,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          margin: EdgeInsets.zero,
+                          width: 30,
+                          height: 30,
+                          decoration: BoxDecoration(boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(.2),
+                                blurRadius: 15,
+                                spreadRadius: 2)
+                          ], color: swatch_3, shape: BoxShape.circle),
+                          child: Center(
+                              child: Icon(
+                            UniconsLine.times,
+                            size: 20,
+                            color: swatch_6,
+                          )),
+                        ),
+                      )),
+                ],
+              )
+            ],
+          );
+        });
+  }
+
+  Future popEdit(
+      int index, int montant, int jourLimite, String desc, bool idDispo) {
+    setState(() {
+      _descriController.text = desc;
+      _montantController.text = montant.toString();
+      _jController.text = jourLimite.toString();
+    });
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            backgroundColor: Colors.transparent,
+            children: [
+              Container(
+                height: 320,
+                margin: EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                    color: swatch_5, borderRadius: BorderRadius.circular(25)),
+                child: Column(
+                  children: [
+                    SingleChildScrollView(
+                      child: Container(
+                        height: 250,
+                        decoration: BoxDecoration(
+                            color: swatch_3,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 5),
+                              padding: EdgeInsets.symmetric(horizontal: 25),
+                              height: 110,
+                              decoration: BoxDecoration(
+                                color: swatch_6,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: TextField(
+                                controller: _descriController,
+                                maxLines: 4,
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    color: swatch_3,
+                                    fontWeight: FontWeight.normal),
+                                decoration: InputDecoration(
+                                    hintStyle: TextStyle(
+                                        fontSize: 17,
+                                        color: swatch_3,
+                                        fontWeight: FontWeight.normal),
+                                    hintText: "Description",
+                                    border: InputBorder.none),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 5),
+                              padding: EdgeInsets.symmetric(horizontal: 25),
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: swatch_6,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: TextField(
+                                controller: _jController,
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    color: swatch_3,
+                                    fontWeight: FontWeight.normal),
+                                keyboardType: TextInputType.number,
+                                maxLines: 1,
+                                decoration: InputDecoration(
+                                    hintStyle: TextStyle(
+                                        fontSize: 17,
+                                        color: swatch_3,
+                                        fontWeight: FontWeight.normal),
+                                    suffixText: 'Jours',
+                                    suffixStyle: TextStyle(
+                                        fontSize: 17,
+                                        color: swatch_3,
+                                        fontWeight: FontWeight.normal),
+                                    hintText: "jours limite du ressource",
+                                    border: InputBorder.none),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 5),
+                              padding: EdgeInsets.symmetric(horizontal: 25),
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: swatch_6,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: TextField(
+                                controller: _montantController,
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    color: swatch_3,
+                                    fontWeight: FontWeight.normal),
+                                keyboardType: TextInputType.number,
+                                maxLines: 1,
+                                decoration: InputDecoration(
+                                    hintStyle: TextStyle(
+                                        fontSize: 17,
+                                        color: swatch_3,
+                                        fontWeight: FontWeight.normal),
+                                    suffixText: 'Ariary',
+                                    suffixStyle: TextStyle(
+                                        fontSize: 17,
+                                        color: swatch_3,
+                                        fontWeight: FontWeight.normal),
+                                    hintText: "montant",
+                                    border: InputBorder.none),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                            width: 100,
+                            height: 40,
+                            child: MaterialButton(
+                                color: swatch_4,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: Text(
+                                  "enregister",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
+                                ),
+                                onPressed: () async {
+                                  /* _dataController.editRessource(index, montant,
+                                      jourLimite, desc, idDispo);*/
+                                  await Boxes.getRessource().putAt(
+                                    index,
+                                    Ressource()
+                                      ..idDispo = idDispo
+                                      ..desc = _descriController.text
+                                      ..montant =
+                                          int.parse(_montantController.text)
+                                      ..jourLimite =
+                                          int.parse(_jController.text),
+                                  );
+                                  Navigator.pop(context);
+                                  print([
+                                    index,
+                                    montant,
+                                    jourLimite,
+                                    desc,
+                                    idDispo
+                                  ]);
+                                }),
+                          ),
+                          SizedBox(
+                            width: 100,
+                            height: 40,
+                            child: MaterialButton(
+                                color: swatch_6,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: Text(
+                                  "annuler",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: swatch_3),
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                }),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          );
+        });
   }
 }
