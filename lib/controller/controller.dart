@@ -28,8 +28,8 @@ class DataController {
     depense.save();
   }
 
-  void deleteDepense(Depense depense) {
-    depense.delete();
+  Future<void> deleteThisDepense(int id) async {
+    await Boxes.getDepense().deleteAt(id);
   }
 
   Future addRessource(

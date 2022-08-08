@@ -9,7 +9,7 @@ import 'package:wallet/views/page_one.dart';
 import 'package:wallet/views/page_two.dart';
 
 import '../page_four.dart';
-import '../page_three.dart';
+import '../page_ressource.dart';
 
 class DrawerAnimated extends StatefulWidget {
   const DrawerAnimated({Key? key}) : super(key: key);
